@@ -105,6 +105,7 @@ class cnn_kim(General): ##inherits General
 
         # Defining Model Layers
         if cnn_rand:
+            print("Random Embeddings!")
             ##Embedding Layer Randomly initialized
             embedding_layer=Embedding(output_dim=self.embedding_dim, input_dim=self.vocab_size)
             Classes = dh.read_labels()

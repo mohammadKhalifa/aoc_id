@@ -43,11 +43,13 @@ X_train,Y_train,Y_train_true=dh.LoadData(args.train_corpus,ClassesDict=dh.get_cl
 X_valid,Y_valid,Y_valid_true=dh.LoadData(args.dev_corpus,ClassesDict=dh.get_classes(),Arabic=Arabic)
 X_test, Y_test, Y_test_true = dh.LoadData(args.test_corpus, ClassesDict=dh.get_classes(),Arabic=Arabic)
 
+CHAR_LEVEL = True if args.model_type=="cnn" else False
 #print(X_valid)
 print('---- Tokenizing Training and Testing Data ------')
-X_train, X_valid,X_test,wordmap = dh.tokenizeData(X_train, X_valid, vocab_size=dh.get_vocab_size(),X_test=X_test)
+X_train, X_valid,X_test,wordmap = dh.tokenizeData(X_train, X_valid, vocab_size=dh.get_vocab_size(),X_test=X_test, char_level=CHAR_LEVEL)
 X_train, X_valid,X_test = dh.paddingSequence(X_train, X_valid, maxLen=30,X_test=X_test)
 n_symbols,word_map=dh.get_word_map_num_symbols(args.train_corpus)
+print("N Symbols = " , n_symbols)
 ###############################
 RAND=True
 ###########################
