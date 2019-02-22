@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from keras.preprocessing import text, sequence
 from keras.utils.np_utils import to_categorical
 from keras.preprocessing.sequence import pad_sequences
@@ -26,10 +28,10 @@ def LoadData(Corpus,ClassesDict,Arabic=False): ## loading file
     labels=to_categorical(np.asarray(labels), num_classes=len(ClassesDict))
     return sentences,labels,TrueLabels
 
-def tokenizeData(X_train,X_valid,vocab_size,X_test=None): ## tokenization
+def tokenizeData(X_train,X_valid,vocab_size,X_test=None, char_level=False): ## tokenization
     "tokenize data"
     #init tokenizer
-    tokenizer= Tokenizer(nb_words=vocab_size, filters='\t\n',split=" ",char_level=False)
+    tokenizer= Tokenizer(nb_words=vocab_size, filters='\t\n',split=" ",char_level=char_level)
     #use tokenizer to split vocab and index them
     tokenizer.fit_on_texts(X_train)
     ##txt to seq
